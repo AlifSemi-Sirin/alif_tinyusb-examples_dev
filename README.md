@@ -15,7 +15,13 @@ Contains following examples:
 
 ## CSolution Project Build (Bare-metal / FreeRTOS)
 
-Make sure that you have setup and run the example projects from the [VSCode Getting Started Template](https://github.com/alifsemi/alif_vscode-template) before working on this project.
+Please make sure you have setup your VSCode and other tools and environment based on the [VSCode Getting Started Template](https://github.com/alifsemi/alif_vscode-template) before working on this project.
+
+After setting up the environment you can select File&rarr;Open Folder from VSCode and press **F1** and start choosing from the preset build tasks.
+1. **F1** &rarr; Tasks:Run Task &rarr; First time pack installation
+2. **F1** &rarr; Tasks:Run Task &rarr; cmsis-csolution.build:Build (Better to do this from the CMSIS Extension Build (hammer icon))
+3. **F1** &rarr; Tasks:Run Task &rarr; Program with Security Toolkit
+
 
 ## CMake Build (Bare-metal / FreeRTOS)
 
@@ -40,7 +46,7 @@ cmake --build build
 
 ### Requirements
 
-- [Zephyr SDK 0.16.9] (https://github.com/zephyrproject-rtos/sdk-ng/releases/tag/v0.16.9)
+- [Zephyr SDK 0.16.9](https://github.com/zephyrproject-rtos/sdk-ng/releases/tag/v0.16.9)
 - `west` tool
 - Python 3 with Zephyr dependencies installed
 
