@@ -1,0 +1,7 @@
+[
+    {
+        "key": "ctrl+b",
+        "command": "cmsis-csolution.build",
+        "when": "cmsis-csolution.activeSolutionState == 'active'"
+    }
+]
