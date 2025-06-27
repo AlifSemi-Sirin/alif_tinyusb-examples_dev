@@ -1,0 +1,13 @@
+RTE/
+out/
+tmp/
+build/
+.venv/
+.west/
+bootloader/
+modules/
+tools/
+zephyr/
+*.yml
+*.cprj
+*.clangd
