@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.20)
 
 # Set TinyUSB library location
 set(TINYUSB_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib/tinyusb)
-# Set FreeRTOS build
-set(RTOS freertos)
+# Set baremetal build
+set(RTOS noos)
 # Set app name
-set(PROJECT hid_composite_freertos)
+set(PROJECT hid_multiple_interface)
 
 # Add native TinyUSB example
 add_subdirectory(${TINYUSB_LOCATION}/examples/device/${PROJECT} ${PROJECT})

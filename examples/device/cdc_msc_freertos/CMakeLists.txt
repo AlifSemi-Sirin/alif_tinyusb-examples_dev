@@ -4,14 +4,17 @@ cmake_minimum_required(VERSION 3.20)
 set(TINYUSB_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib/tinyusb)
 # Set FreeRTOS build
 set(RTOS freertos)
+# Set app name
+set(PROJECT cdc_msc_freertos)
 
-add_subdirectory(${TINYUSB_LOCATION}/examples/device/cdc_msc_freertos cdc_msc_freertos)
-
-project(cdc_msc_freertos_wrapper)
+# Add native TinyUSB example
+add_subdirectory(${TINYUSB_LOCATION}/examples/device/${PROJECT} ${PROJECT})
+# Set project name
+project(${PROJECT}_wrapper)
 
 # Generate *.bin and *.hex file
 add_custom_target(generate_binaries ALL
-  COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:cdc_msc_freertos> cdc_msc_freertos.bin
-  COMMAND ${CMAKE_OBJCOPY} -O ihex   $<TARGET_FILE:cdc_msc_freertos> cdc_msc_freertos.hex
-  DEPENDS cdc_msc_freertos
+  COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${PROJECT}> ${PROJECT}.bin
+  COMMAND ${CMAKE_OBJCOPY} -O ihex   $<TARGET_FILE:${PROJECT}> ${PROJECT}.hex
+  DEPENDS ${PROJECT}
 )
