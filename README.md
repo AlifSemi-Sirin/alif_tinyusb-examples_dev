@@ -36,9 +36,11 @@ After setting up the environment you can select File&rarr;Open Folder from VSCod
 
 ### Build example: CDC + MSC
 
+Currently build is supported for 2 cores: **m55_hp** and **m55_he**. If *CORE* flag is not defined during build the default value is **m55_hp**.
+
 ```bash
 cd examples/device/cdc_msc
-cmake -B build -DBOARD=alif_e7_dk -DCORE_M55_HP=ON
+cmake -B build -DBOARD=alif_e7_dk -DCORE=m55_hp
 cmake --build build
 ```
 
@@ -60,6 +62,8 @@ cd zephyr-sdk-0.16.9
 
 ### Build Example (CDC + MSC for Zephyr)
 
+Currently build is supported for 2 cores: **m55_hp** and **m55_he**. If *CORE* flag is not defined during build the default value is **m55_hp**.
+
 ```bash
 python3 -m venv .venv
 source ./.venv/bin/activate
@@ -72,7 +76,7 @@ west update
 pip install -r zephyr/scripts/requirements.txt
 
 cd examples/device/cdc_msc_zephyr/
-west build -b alif_e7_dk -- -DCORE_M55_HP=ON
+west build -b alif_e7_dk -- -DCORE=m55_hp
 ```
 
 ## References
