@@ -7,6 +7,8 @@ set(RTOS noos)
 # Set app name
 set(PROJECT net_lwip_webserver)
 
+set(CMAKE_BUILD_TYPE Release)
+
 # Add native TinyUSB example
 add_subdirectory(${TINYUSB_LOCATION}/examples/device/${PROJECT} ${PROJECT})
 # Set project name
