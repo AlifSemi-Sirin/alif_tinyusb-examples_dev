@@ -53,4 +53,6 @@ solution:
     - project: examples/device/hid_composite/device_hid_composite.cproject.yaml
     - project: examples/device/hid_composite_freertos/device_hid_composite_freertos.cproject.yaml
     - project: examples/device/hid_multiple_interface/device_hid_multiple_interface.cproject.yaml
-
+    - project: examples/device/net_lwip_webserver/device_net_lwip_webserver.cproject.yaml
+    - project: examples/device/net_lwip_webserver_freertos/device_net_lwip_webserver_freertos.cproject.yaml
+    
