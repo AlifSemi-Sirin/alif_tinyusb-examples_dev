@@ -7,10 +7,32 @@ set(RTOS noos)
 # Set app name
 set(PROJECT hid_composite)
 
-# Add native TinyUSB example
-add_subdirectory(${TINYUSB_LOCATION}/examples/device/${PROJECT} ${PROJECT})
+# Include BSP
+include(${TINYUSB_LOCATION}/hw/bsp/family_support.cmake)
+
 # Set project name
-project(${PROJECT}_wrapper)
+project(${PROJECT} C CXX ASM)
+
+# Checks this example is valid for the family and initializes the project
+family_initialize_project(${PROJECT} ${CMAKE_CURRENT_LIST_DIR})
+
+# Add executable 
+add_executable(${PROJECT})
+
+# Example source
+target_sources(${PROJECT} PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/usb_descriptors.c
+        )
+
+# Example include
+target_include_directories(${PROJECT} PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+        )
+
+# Configure compilation flags and libraries for Zephyr.
+# See the corresponding function in hw/bsp/FAMILY/family.cmake for details.
+family_configure_device_example(${PROJECT} ${RTOS})
 
 # Generate *.bin and *.hex file
 add_custom_target(generate_binaries ALL
