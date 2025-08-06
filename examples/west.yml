@@ -5,7 +5,7 @@ manifest:
 
   remotes:
     - name: alif
-      url-base: https://github.com/AlifSemi-Sirin
+      url-base: https://github.com/alifsemi
   
   projects:
     - name: zephyr
