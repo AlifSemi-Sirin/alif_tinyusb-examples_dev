@@ -4,7 +4,8 @@ layer:
 
   define:
     - CFG_TUSB_MCU: OPT_MCU_NONE
-    - CFG_TUSB_RHPORT0_MODE: OPT_MODE_DEVICE
+#    - CFG_TUSB_RHPORT0_MODE: OPT_MODE_DEVICE
+    - CFG_TUSB_RHPORT0_MODE: OPT_MODE_HOST
     - TUP_DCD_ENDPOINT_MAX: 4
     - TUD_OPT_RHPORT: 0
     - BOARD_TUD_MAX_SPEED: OPT_MODE_HIGH_SPEED
@@ -16,7 +17,27 @@ layer:
     - group: Alif USB low level driver for TinyUSB device mode
       files:
         - file: ../lib/tinyusb/src/portable/alif/alif_e7_dk/dcd_ensemble.c
-    
+        - file: ../lib/tinyusb/src/portable/alif/alif_e7_dk/hcd_ensemble.c
+
+    - group: xHCI Driver
+      files:
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_bulk_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_hub.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_port_enable.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_initialize.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_port_status_get.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_control_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_interrupt_handler.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_td_process.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_entry.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_interrupt_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_transfer_request.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_ep_bandwidth.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_isoc_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_ep_reset.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_mem_init.c
+
     - group: Alif BSP
       files:
         - file: ../lib/tinyusb/hw/bsp/alif/family.c
@@ -30,14 +51,30 @@ layer:
         - file: ../lib/tinyusb/src/common/tusb_fifo.c
         - file: ../lib/tinyusb/hw/bsp/board.c
 
-    - group: TinyUSB (device mode)
+    - group: TinyUSB (device and host mode)
       files:
-        - file: ../lib/tinyusb/src/device/usbd.c
-        - file: ../lib/tinyusb/src/device/usbd_control.c
-        - file: ../lib/tinyusb/src/class/cdc/cdc_device.c
-        - file: ../lib/tinyusb/src/class/msc/msc_device.c
-        - file: ../lib/tinyusb/src/class/hid/hid_device.c
+        - file: ../lib/tinyusb/src/host/usbh.c
+        - file: ../lib/tinyusb/src/host/hub.c
+        - file: ../lib/tinyusb/src/class/dfu/dfu_device.c
+        - file: ../lib/tinyusb/src/class/dfu/dfu_rt_device.c
+        - file: ../lib/tinyusb/src/class/audio/audio_device.c
+        - file: ../lib/tinyusb/src/class/net/ecm_rndis_device.c
         - file: ../lib/tinyusb/src/class/net/ncm_device.c
+        - file: ../lib/tinyusb/src/class/vendor/vendor_host.c
+        - file: ../lib/tinyusb/src/class/vendor/vendor_device.c
+        - file: ../lib/tinyusb/src/class/hid/hid_device.c
+        - file: ../lib/tinyusb/src/class/hid/hid_host.c
+        - file: ../lib/tinyusb/src/class/msc/msc_device.c
+        - file: ../lib/tinyusb/src/class/msc/msc_host.c
+#        - file: ../lib/tinyusb/src/class/midi/midi_host.c
+        - file: ../lib/tinyusb/src/class/midi/midi_device.c
+        - file: ../lib/tinyusb/src/class/usbtmc/usbtmc_device.c
+        - file: ../lib/tinyusb/src/class/cdc/cdc_host.c
+        - file: ../lib/tinyusb/src/class/cdc/cdc_device.c
+        - file: ../lib/tinyusb/src/class/video/video_device.c
+        - file: ../lib/tinyusb/src/device/usbd_control.c
+        - file: ../lib/tinyusb/src/device/usbd.c
+
 
   add-path:
     - ../lib/tinyusb/src
@@ -45,6 +82,7 @@ layer:
     - ../lib/tinyusb/hw/bsp/alif/boards/alif_e7_dk
     - ../lib/boardlib
     - ../lib/common-app-utils/logging
+    - ../lib/tinyusb/src/portable/xhci
     - .
     
   components:

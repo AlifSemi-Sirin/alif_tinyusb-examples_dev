@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/cproject.schema.json
+project:
+  groups:
+    - group: TinyUSB host example with CDC-ACM/MSC/HID
+      files:
+        - file: ../../../lib/tinyusb/examples/host/cdc_msc_hid/src/main.c
+        - file: ../../../lib/tinyusb/examples/host/cdc_msc_hid/src/cdc_app.c
+        - file: ../../../lib/tinyusb/examples/host/cdc_msc_hid/src/msc_app.c
+        - file: ../../../lib/tinyusb/examples/host/cdc_msc_hid/src/hid_app.c
+
+  layers:
+    - layer: ../../tinyusb_alif.clayer.yaml
+
+
+  add-path:
+    - ../../../lib/tinyusb/examples/host/cdc_msc_hid/src
+
+  components:
+    - component: AlifSemiconductor::Device:Startup&C Startup
+    - component: ARM::CMSIS:CORE
+
+  output:
+    base-name: $Project$
+    type:
+      - elf
+      - bin
