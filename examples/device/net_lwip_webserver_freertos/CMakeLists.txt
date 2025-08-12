@@ -7,16 +7,14 @@ set(RTOS freertos)
 # Set app name
 set(PROJECT net_lwip_webserver_freertos)
 
-set(CMAKE_BUILD_TYPE Release)
-
 # Include BSP
 include(${TINYUSB_LOCATION}/hw/bsp/family_support.cmake)
 
 # Get PROJECT name for the example (e.g. <BOARD>-<DIR_NAME>)
 family_get_project_name(PROJECT ${CMAKE_CURRENT_LIST_DIR})
 
-# Prefer the tinyusb lwip
-set(LWIP ${TOP}/lib/lwip)
+# Set lwip location
+set(LWIP ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib/lwip)
 
 # If we can't find one from tinyusb then check cmake var before giving up
 if (NOT EXISTS ${LWIP}/src)
@@ -41,6 +39,7 @@ add_executable(${EXE_NAME})
 target_sources(${EXE_NAME} PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/src/main.c
   ${CMAKE_CURRENT_LIST_DIR}/src/usb_descriptors.c
+  ${CMAKE_CURRENT_LIST_DIR}/src/inet_chksum.c
   )
 
 # Example include

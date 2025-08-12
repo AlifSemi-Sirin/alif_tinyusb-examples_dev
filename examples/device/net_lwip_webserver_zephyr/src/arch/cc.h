@@ -61,6 +61,13 @@ typedef int sys_prot_t;
 #define PACK_STRUCT_END
 #define PACK_STRUCT_FIELD(x) x
 
+// NOTE: Workaround for incorrect checksum calculation,
+// when size optimization is enabled in the GCC compiler.
+#if __GNUC__ < 14
+# define LWIP_CHKSUM lwip_standard_chksum_O3
+unsigned short lwip_standard_chksum_O3(const void *dataptr, int len);
+#endif
+
 #elif defined (__TASKING__)
 
 #define PACK_STRUCT_BEGIN

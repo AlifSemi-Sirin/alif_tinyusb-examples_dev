@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 # Set TinyUSB library location
-set (TINYUSB_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib/tinyusb)
+set(TINYUSB_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib/tinyusb)
 # Set Zephyr location
 set(Zephyr_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../zephyr/share/zephyr-package/cmake)
 # Set Zephyr build
@@ -10,15 +10,12 @@ set(RTOS zephyr)
 # Include BSP
 include(${TINYUSB_LOCATION}/hw/bsp/family_support.cmake)
 
-# Gets PROJECT name for the example (e.g. <BOARD>-<DIR_NAME>)
+# Get PROJECT name for the example (e.g. <BOARD>-<DIR_NAME>)
 family_get_project_name(PROJECT ${CMAKE_CURRENT_LIST_DIR})
 project(${PROJECT} C CXX ASM)
 
-#set(CMAKE_BUILD_TYPE Debug)
-
-# Prefer the tinyusb lwip
-set(LWIP ${TOP}/lib/lwip)
-#set(LWIP ${TINYUSB_LOCATION}/lib/lwip)
+# Set lwip location
+set(LWIP ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib/lwip)
 
 # If we can't find one from tinyusb then check cmake var before giving up
 if (NOT EXISTS ${LWIP}/src)
@@ -40,6 +37,7 @@ set(EXE_NAME app)
 target_sources(${EXE_NAME} PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/src/main.c
   ${CMAKE_CURRENT_LIST_DIR}/src/usb_descriptors.c
+  ${CMAKE_CURRENT_LIST_DIR}/src/inet_chksum.c
   )
 
 # Example include
