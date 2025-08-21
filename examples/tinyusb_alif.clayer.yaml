@@ -38,6 +38,11 @@ layer:
         - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_ep_reset.c
         - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_mem_init.c
 
+        - file: ../lib/tinyusb/src/portable/xhci/ux_system_initialize.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_allocate.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_free.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_free_block_best_get.c
+
     - group: Alif BSP
       files:
         - file: ../lib/tinyusb/hw/bsp/alif/family.c
