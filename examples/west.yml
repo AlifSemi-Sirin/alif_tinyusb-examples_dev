@@ -5,12 +5,12 @@ manifest:
 
   remotes:
     - name: alif
-      url-base: https://github.com/AlifSemi-Sirin
+      url-base: https://github.com/alifsemi
   
   projects:
     - name: zephyr
-      repo-path: zephyr_alif_fork_4.1.git
-      revision: zas-v2.x-dev-mr
+      repo-path: zephyr_alif_2.0.git
+      revision: main
       import: true
   self:
     path: .
