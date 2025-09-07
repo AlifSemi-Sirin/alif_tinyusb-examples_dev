@@ -58,4 +58,5 @@ solution:
     - project: examples/device/net_lwip_webserver_freertos/device_net_lwip_webserver_freertos.cproject.yaml
 
     - project: examples/host/cdc_msc_hid/host_cdc_msc_hid.cproject.yaml
+    - project: examples/host/device_info/host_device_info.cproject.yaml
 
