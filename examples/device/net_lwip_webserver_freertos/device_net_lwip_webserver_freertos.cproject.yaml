@@ -5,6 +5,7 @@ project:
       files:
         - file: src/main.c
         - file: src/usb_descriptors.c
+        - file: src/inet_chksum.c
 
     - group: lwIP
       files:
