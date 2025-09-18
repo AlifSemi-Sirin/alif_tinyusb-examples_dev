@@ -58,17 +58,15 @@ project:
         - file: ../../../lib/tinyusb/lib/networking/rndis_reports.c
 
   layers:
-    - layer: ../../tinyusb_alif.clayer.yaml
+    - layer: ../../alif-ensemble.clayer.yaml
+    - layer: ../../alif-tinyusb.clayer.yaml
+    - layer: ../../alif-tinyusb-cdc.clayer.yaml
 
   add-path:
     - ../../../lib/tinyusb/examples/device/net_lwip_webserver/src/
     - ../../../lib/tinyusb/lib/networking
     - ../../../lib/lwip/src/include/
     - ../../../lib/lwip/src/include/lwip/apps
-
-  components:
-    - component: AlifSemiconductor::Device:Startup&C Startup
-    - component: ARM::CMSIS:CORE
 
   output:
     base-name: $Project$

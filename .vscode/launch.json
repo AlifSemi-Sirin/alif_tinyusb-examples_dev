@@ -20,7 +20,18 @@
                 "set $sp = __Vectors[0]",
                 "set $pc = __Vectors[1]",
                 "set *0xe000ed08 = __Vectors"
-            ]
+            ],
+            "rttConfig": {
+                "enabled": true,
+                "address": "auto",
+                "decoders": [
+                    {
+                        "port": 0,
+                        "type": "console"
+                    }
+                ]
+            }
         }
     ]
 }
+

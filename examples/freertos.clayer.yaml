@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/clayer.schema.json
+layer:
+  description: FreeRTOS components layer
+  
+  components:
+    - component: RTOS&FreeRTOS:Core&Cortex-M
+    - component: RTOS&FreeRTOS:Config&FreeRTOS
+    - component: RTOS&FreeRTOS:Heap&Heap_4
+    - component: RTOS&FreeRTOS:Timers
+
