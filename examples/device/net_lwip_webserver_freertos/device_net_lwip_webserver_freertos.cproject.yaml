@@ -59,22 +59,16 @@ project:
         - file: ../../../lib/tinyusb/lib/networking/rndis_reports.c
 
   layers:
-    - layer: ../../tinyusb_alif.clayer.yaml
+    - layer: ../../alif-ensemble.clayer.yaml
+    - layer: ../../alif-tinyusb.clayer.yaml
+    - layer: ../../alif-tinyusb-cdc.clayer.yaml
+    - layer: ../../freertos.clayer.yaml
 
   add-path:
     - src/
     - ../../../lib/tinyusb/lib/networking
     - ../../../lib/lwip/src/include/
     - ../../../lib/lwip/src/include/lwip/apps
-
-  components:
-    - component: AlifSemiconductor::Device:Startup&C Startup
-    - component: ARM::CMSIS:CORE
-
-    - component: RTOS&FreeRTOS:Core&Cortex-M
-    - component: RTOS&FreeRTOS:Config&FreeRTOS
-    - component: RTOS&FreeRTOS:Heap&Heap_4
-    - component: RTOS&FreeRTOS:Timers
 
   output:
     base-name: $Project$
