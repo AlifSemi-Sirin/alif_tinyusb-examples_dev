@@ -3,19 +3,16 @@ project:
   groups:
     - group: TinyUSB Composite HID device example (keyboard+mouse+gamepad)
       files:
-        - file: ../../../lib/tinyusb/examples/device/hid_composite/src/main.c
-        - file: ../../../lib/tinyusb/examples/device/hid_composite/src/usb_descriptors.c
+        - file: src/main.c
+        - file: src/usb_descriptors.c
 
   layers:
-    - layer: ../../tinyusb_alif.clayer.yaml
-
+    - layer: ../../alif-ensemble.clayer.yaml
+    - layer: ../../alif-tinyusb.clayer.yaml
+    - layer: ../../alif-tinyusb-cdc.clayer.yaml
 
   add-path:
-    - ../../../lib/tinyusb/examples/device/hid_composite/src/
-
-  components:
-    - component: AlifSemiconductor::Device:Startup&C Startup
-    - component: ARM::CMSIS:CORE
+    - src/
 
   output:
     base-name: $Project$

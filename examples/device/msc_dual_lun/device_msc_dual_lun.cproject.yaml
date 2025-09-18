@@ -8,15 +8,12 @@ project:
         - file: ../../../lib/tinyusb/examples/device/msc_dual_lun/src/msc_disk_dual.c
 
   layers:
-    - layer: ../../tinyusb_alif.clayer.yaml
-
-
+    - layer: ../../alif-ensemble.clayer.yaml
+    - layer: ../../alif-tinyusb-cdc.clayer.yaml
+    - layer: ../../alif-tinyusb.clayer.yaml
+    
   add-path:
     - ../../../lib/tinyusb/examples/device/cdc_msc/src/
-
-  components:
-    - component: AlifSemiconductor::Device:Startup&C Startup
-    - component: ARM::CMSIS:CORE
 
   output:
     base-name: $Project$

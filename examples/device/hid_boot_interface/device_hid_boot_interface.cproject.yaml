@@ -7,15 +7,13 @@ project:
         - file: ../../../lib/tinyusb/examples/device/hid_boot_interface/src/usb_descriptors.c
 
   layers:
-    - layer: ../../tinyusb_alif.clayer.yaml
+    - layer: ../../alif-ensemble.clayer.yaml
+    - layer: ../../alif-tinyusb-cdc.clayer.yaml
+    - layer: ../../alif-tinyusb.clayer.yaml
 
 
   add-path:
     - ../../../lib/tinyusb/examples/device/hid_boot_interface/src/
-
-  components:
-    - component: AlifSemiconductor::Device:Startup&C Startup
-    - component: ARM::CMSIS:CORE
 
   output:
     base-name: $Project$
