@@ -74,11 +74,6 @@ CFG_TUH_MEM_SECTION struct {
 void led_blinking_task(void* param);
 static void print_utf16(uint16_t* temp_buf, size_t buf_len);
 
-
-static uint32_t xhci_timer_interval_ms = 20;
-void xhci_timer_task(void* param);
-
-
 #if CFG_TUSB_OS == OPT_OS_FREERTOS
 void init_freertos_task(void);
 #endif
@@ -110,7 +105,6 @@ int main(void) {
   while (1) {
     tuh_task();     // tinyusb host task
     led_blinking_task(NULL);
-    xhci_timer_task(NULL);
   }
   return 0;
 #endif
@@ -264,46 +258,6 @@ void led_blinking_task(void* param) {
     start_ms += blink_interval_ms;
     board_led_write(led_state);
     led_state = 1 - led_state; // toggle
-  }
-}
-
-#include "ux_api.h"
-
-static bool xhci_timer_active = false;
-void (*xhci_timer_expiration_function) (void*) = NULL;
-static void *xhci_timer_expiration_input = NULL;
-
-unsigned int _ux_utility_timer_create(UX_TIMER *timer, char *timer_name, void (*expiration_function) (void*),
-        void *expiration_input, unsigned long initial_ticks, unsigned long reschedule_ticks,
-        unsigned int activation_flag) 
-{
-  xhci_timer_expiration_input = expiration_input;
-  xhci_timer_expiration_function = expiration_function;
-    printf("Called %s\n\r", __FUNCTION__);
-    return 0;
-}
-
-
-unsigned int tx_timer_activate(UX_TIMER *timer)
-{
-  xhci_timer_active = true;
-  printf("Called %s(%p)\n\r", __FUNCTION__, timer);
-  return 0;
-}
-
-void xhci_timer_task(void* param) {
-  (void) param;
-  static uint32_t start_ms = 0;
-
-  while (1) {
-    if (board_millis() - start_ms < xhci_timer_interval_ms) {
-      return; // not enough time
-    }
-
-    start_ms += xhci_timer_interval_ms;
-    if (xhci_timer_active && xhci_timer_expiration_function != NULL) {
-      xhci_timer_expiration_function(xhci_timer_expiration_input);
-    }
   }
 }
 
