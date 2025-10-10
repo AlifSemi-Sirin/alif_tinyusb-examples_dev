@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/cproject.schema.json
+project:
+  groups:
+    - group: TinyUSB Composite device example with two MSC
+      files:
+        - file: ../../../lib/tinyusb/examples/device/msc_dual_lun/src/main.c
+        - file: ../../../lib/tinyusb/examples/device/msc_dual_lun/src/usb_descriptors.c
+        - file: ../../../lib/tinyusb/examples/device/msc_dual_lun/src/msc_disk_dual.c
+
+  layers:
+    - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
+    - layer: ../../alif-common-app-utils.clayer.yml
+    - layer: ../../alif-tinyusb-cdc.clayer.yml
+    - layer: ../../alif-tinyusb.clayer.yml
+    
+  add-path:
+    - ../../../lib/tinyusb/examples/device/cdc_msc/src/
+
+  output:
+    base-name: $Project$
+    type:
+      - elf
+      - bin

@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/cproject.schema.json
+project:
+  groups:
+    - group: TinyUSB RNDIS/CDC-ECM virtual network adapter example
+      files:
+        - file: ../../../lib/tinyusb/examples/device/net_lwip_webserver/src/main.c
+        - file: ../../../lib/tinyusb/examples/device/net_lwip_webserver/src/usb_descriptors.c
+
+    - group: lwIP
+      files:
+        - file: ../../../lib/lwip/src/core/altcp.c
+        - file: ../../../lib/lwip/src/core/altcp_alloc.c
+        - file: ../../../lib/lwip/src/core/altcp_tcp.c
+        - file: ../../../lib/lwip/src/core/def.c
+        - file: ../../../lib/lwip/src/core/dns.c
+        - file: ../../../lib/lwip/src/core/inet_chksum.c
+        - file: ../../../lib/lwip/src/core/init.c
+        - file: ../../../lib/lwip/src/core/ip.c
+        - file: ../../../lib/lwip/src/core/mem.c
+        - file: ../../../lib/lwip/src/core/memp.c
+        - file: ../../../lib/lwip/src/core/netif.c
+        - file: ../../../lib/lwip/src/core/pbuf.c
+        - file: ../../../lib/lwip/src/core/raw.c
+        - file: ../../../lib/lwip/src/core/stats.c
+        - file: ../../../lib/lwip/src/core/sys.c
+        - file: ../../../lib/lwip/src/core/tcp.c
+        - file: ../../../lib/lwip/src/core/tcp_in.c
+        - file: ../../../lib/lwip/src/core/tcp_out.c
+        - file: ../../../lib/lwip/src/core/timeouts.c
+        - file: ../../../lib/lwip/src/core/udp.c
+        - file: ../../../lib/lwip/src/core/ipv4/autoip.c
+        - file: ../../../lib/lwip/src/core/ipv4/dhcp.c
+        - file: ../../../lib/lwip/src/core/ipv4/etharp.c
+        - file: ../../../lib/lwip/src/core/ipv4/icmp.c
+        - file: ../../../lib/lwip/src/core/ipv4/igmp.c
+        - file: ../../../lib/lwip/src/core/ipv4/ip4.c
+        - file: ../../../lib/lwip/src/core/ipv4/ip4_addr.c
+        - file: ../../../lib/lwip/src/core/ipv4/ip4_frag.c
+        - file: ../../../lib/lwip/src/core/ipv6/dhcp6.c
+        - file: ../../../lib/lwip/src/core/ipv6/ethip6.c
+        - file: ../../../lib/lwip/src/core/ipv6/icmp6.c
+        - file: ../../../lib/lwip/src/core/ipv6/inet6.c
+        - file: ../../../lib/lwip/src/core/ipv6/ip6.c
+        - file: ../../../lib/lwip/src/core/ipv6/ip6_addr.c
+        - file: ../../../lib/lwip/src/core/ipv6/ip6_frag.c
+        - file: ../../../lib/lwip/src/core/ipv6/mld6.c
+        - file: ../../../lib/lwip/src/core/ipv6/nd6.c
+        - file: ../../../lib/lwip/src/netif/ethernet.c
+        - file: ../../../lib/lwip/src/netif/slipif.c
+        - file: ../../../lib/lwip/src/apps/http/httpd.c
+        - file: ../../../lib/lwip/src/apps/http/fs.c
+        - file: ../../../lib/lwip/src/apps/lwiperf/lwiperf.c
+
+    - group: TinyUSB Networking
+      files:
+        - file: ../../../lib/tinyusb/lib/networking/dhserver.c
+        - file: ../../../lib/tinyusb/lib/networking/dnserver.c
+        - file: ../../../lib/tinyusb/lib/networking/rndis_reports.c
+
+  layers:
+    - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
+    - layer: ../../alif-common-app-utils.clayer.yml
+    - layer: ../../alif-tinyusb.clayer.yml
+    - layer: ../../alif-tinyusb-cdc.clayer.yml
+
+  add-path:
+    - ../../../lib/tinyusb/examples/device/net_lwip_webserver/src/
+    - ../../../lib/tinyusb/lib/networking
+    - ../../../lib/lwip/src/include/
+    - ../../../lib/lwip/src/include/lwip/apps
+
+  output:
+    base-name: $Project$
+    type:
+      - elf
+      - bin
