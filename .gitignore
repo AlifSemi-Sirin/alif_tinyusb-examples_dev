@@ -1,6 +1,10 @@
-RTE/
 out/
 tmp/
+*.cbuild-idx.yml
+*.cbuild-set.yml
+*.cbuild-run.yml
+*.cbuild.yml
+*.clangd
 build/
 .venv/
 .west/
@@ -8,6 +12,3 @@ bootloader/
 modules/
 tools/
 zephyr/
-*.yml
-*.cprj
-*.clangd

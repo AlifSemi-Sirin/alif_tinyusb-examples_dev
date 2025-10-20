@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/cproject.schema.json
+project:
+  groups:
+    - group: TinyUSB Composite HID device example (keyboard+mouse+gamepad)
+      files:
+        - file: src/main.c
+        - file: src/usb_descriptors.c
+
+  layers:
+    - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
+    - layer: ../../alif-common-app-utils.clayer.yml
+    - layer: ../../alif-tinyusb.clayer.yml
+    - layer: ../../alif-tinyusb-cdc.clayer.yml
+
+  add-path:
+    - src/
+
+  output:
+    base-name: $Project$
+    type:
+      - elf
+      - bin
