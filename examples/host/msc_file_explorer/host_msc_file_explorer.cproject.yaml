@@ -1,12 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/cproject.schema.json
 project:
   groups:
-    - group: TinyUSB host example with CDC-ACM/MSC/HID
+    - group: TinyUSB Host MassStorage Explorer Example
       files:
         - file: src/main.c
-        - file: src/cdc_app.c
         - file: src/msc_app.c
-        - file: src/hid_app.c
+        - file: ../../../lib/tinyusb/lib/fatfs/source/ff.c
+        - file: ../../../lib/tinyusb/lib/fatfs/source/ffsystem.c
+        - file: ../../../lib/tinyusb/lib/fatfs/source/ffunicode.c
 
   layers:
     - layer: ../../tinyusb_alif.clayer.yaml
@@ -14,6 +15,8 @@ project:
 
   add-path:
     - src
+    - ../../../lib/tinyusb/lib/fatfs/source
+    - ../../../lib/tinyusb/lib/embedded-cli
 
   components:
     - component: AlifSemiconductor::Device:Startup&C Startup
