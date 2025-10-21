@@ -3,8 +3,8 @@ project:
   groups:
     - group: TinyUSB Video capture example
       files:
-        - file: ../../../lib/tinyusb/examples/device/video_capture/src/main.c
-        - file: ../../../lib/tinyusb/examples/device/video_capture/src/usb_descriptors.c
+        - file: src/main.c
+        - file: src/usb_descriptors.c
 
   layers:
     - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
@@ -15,7 +15,7 @@ project:
 
   add-path:
     - ./
-    - ../../../lib/tinyusb/examples/device/video_capture/src/
+    - src/
 
   output:
     base-name: $Project$
