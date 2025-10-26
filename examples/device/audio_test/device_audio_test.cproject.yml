@@ -3,8 +3,10 @@ project:
   groups:
     - group: TinyUSB Audio capture example
       files:
-        - file: ../../../lib/tinyusb/examples/device/audio_test/src/main.c
-        - file: ../../../lib/tinyusb/examples/device/audio_test/src/usb_descriptors.c
+        - file: src/main.c
+        - file: src/usb_descriptors.c
+        - file: src/audio_device.c
+
 
   layers:
     - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
@@ -15,7 +17,7 @@ project:
 
   add-path:
     - ./
-    - ../../../lib/tinyusb/examples/device/audio_test/src/
+    - src/
 
   output:
     base-name: $Project$
