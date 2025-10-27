@@ -16,6 +16,9 @@ layer:
     - group: Alif USB low level driver for TinyUSB device mode
       files:
         - file: ../lib/tinyusb/src/portable/alif/alif_e7_dk/dcd_ensemble.c
+
+    - group: Alif USB low level driver for TinyUSB host mode
+      files:
         - file: ../lib/tinyusb/src/portable/alif/alif_e7_dk/hcd_ensemble.c
 
     - group: xHCI Driver
@@ -88,9 +91,9 @@ layer:
     - ../lib/common-app-utils/logging
     - ../lib/tinyusb/src/portable/xhci
     - .
-    
+
   components:
     - component: AlifSemiconductor::Device:SOC Peripherals:GPIO
     - component: AlifSemiconductor::Device:SOC Peripherals:PINCONF
     - component: AlifSemiconductor::Device:SOC Peripherals:USART
-    
+
