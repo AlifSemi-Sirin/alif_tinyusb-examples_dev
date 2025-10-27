@@ -29,54 +29,7 @@
  * Author: Adam Dunkels <adam@sics.se>
  *
  */
-#ifndef __CC_H__
-#define __CC_H__
 
-//#include "cpu.h"
-
-typedef int sys_prot_t;
-
-
-
-/* define compiler specific symbols */
-#if defined (__ICCARM__)
-
-#define PACK_STRUCT_BEGIN
-#define PACK_STRUCT_STRUCT
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
-#define PACK_STRUCT_USE_INCLUDES
-
-#elif defined (__CC_ARM)
-
-#define PACK_STRUCT_BEGIN __packed
-#define PACK_STRUCT_STRUCT
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
-
-#elif defined (__GNUC__)
-
-#define PACK_STRUCT_BEGIN
-#define PACK_STRUCT_STRUCT __attribute__ ((__packed__))
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
-
-// NOTE: Workaround for incorrect checksum calculation,
-// when size optimization is enabled in the GCC compiler.
-#if __GNUC__ < 14
-# define LWIP_CHKSUM lwip_standard_chksum_O3
-unsigned short lwip_standard_chksum_O3(const void *dataptr, int len);
+#if defined(__ICCARM__)
+#pragma pack()
 #endif
-
-#elif defined (__TASKING__)
-
-#define PACK_STRUCT_BEGIN
-#define PACK_STRUCT_STRUCT
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
-
-#endif
-
-#define LWIP_PLATFORM_ASSERT(x) do { if(!(x)) while(1); } while(0)
-
-#endif /* __CC_H__ */

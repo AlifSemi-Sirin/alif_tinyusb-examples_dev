@@ -26,57 +26,46 @@
  *
  * This file is part of the lwIP TCP/IP stack.
  *
- * Author: Adam Dunkels <adam@sics.se>
+ * Author: Simon Goldschmidt
  *
  */
-#ifndef __CC_H__
-#define __CC_H__
+#ifndef __LWIPOPTS_H__
+#define __LWIPOPTS_H__
 
-//#include "cpu.h"
+/* Prevent having to link sys_arch.c (we don't test the API layers in unit tests) */
+#define NO_SYS                          1
+#define MEM_ALIGNMENT                   4
+#define LWIP_RAW                        0
+#define LWIP_NETCONN                    0
+#define LWIP_SOCKET                     0
+#define LWIP_DHCP                       0
+#define LWIP_ICMP                       1
+#define LWIP_UDP                        1
+#define LWIP_TCP                        1
+#define LWIP_IPV4                       1
+#define LWIP_IPV6                       0
+#define ETH_PAD_SIZE                    0
+#define LWIP_IP_ACCEPT_UDP_PORT(p)      ((p) == PP_NTOHS(67))
 
-typedef int sys_prot_t;
+#define TCP_MSS                         (1500 /*mtu*/ - 20 /*iphdr*/ - 20 /*tcphhr*/)
+#define TCP_SND_BUF                     (4 * TCP_MSS)
+#define TCP_WND                         (4 * TCP_MSS)
 
+#define ETHARP_SUPPORT_STATIC_ENTRIES   1
 
+#define LWIP_HTTPD_CGI                  0
+#define LWIP_HTTPD_SSI                  0
+#define LWIP_HTTPD_SSI_INCLUDE_TAG      0
 
-/* define compiler specific symbols */
-#if defined (__ICCARM__)
+#define LWIP_SINGLE_NETIF               1
 
-#define PACK_STRUCT_BEGIN
-#define PACK_STRUCT_STRUCT
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
-#define PACK_STRUCT_USE_INCLUDES
+#define PBUF_POOL_SIZE                  4
 
-#elif defined (__CC_ARM)
+#define HTTPD_USE_CUSTOM_FSDATA         0
 
-#define PACK_STRUCT_BEGIN __packed
-#define PACK_STRUCT_STRUCT
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
+#define LWIP_MULTICAST_PING             1
+#define LWIP_BROADCAST_PING             1
+#define LWIP_IPV6_MLD                   0
+#define LWIP_IPV6_SEND_ROUTER_SOLICIT   0
 
-#elif defined (__GNUC__)
-
-#define PACK_STRUCT_BEGIN
-#define PACK_STRUCT_STRUCT __attribute__ ((__packed__))
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
-
-// NOTE: Workaround for incorrect checksum calculation,
-// when size optimization is enabled in the GCC compiler.
-#if __GNUC__ < 14
-# define LWIP_CHKSUM lwip_standard_chksum_O3
-unsigned short lwip_standard_chksum_O3(const void *dataptr, int len);
-#endif
-
-#elif defined (__TASKING__)
-
-#define PACK_STRUCT_BEGIN
-#define PACK_STRUCT_STRUCT
-#define PACK_STRUCT_END
-#define PACK_STRUCT_FIELD(x) x
-
-#endif
-
-#define LWIP_PLATFORM_ASSERT(x) do { if(!(x)) while(1); } while(0)
-
-#endif /* __CC_H__ */
+#endif /* __LWIPOPTS_H__ */

@@ -31,7 +31,6 @@ solution:
       debug: on
       define:
         - _DEBUG
-        - DEBUG
     - type: release
       optimize: speed
       debug: on
