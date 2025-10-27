@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/cproject.schema.json
+project:
+  groups:
+    - group: TinyUSB HID device example (keyboard+mouse) with multiple interfaces
+      files:
+        - file: ../../../lib/tinyusb/examples/device/hid_multiple_interface/src/main.c
+        - file: ../../../lib/tinyusb/examples/device/hid_multiple_interface/src/usb_descriptors.c
+
+  layers:
+    - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
+    - layer: ../../alif-common-app-utils.clayer.yml
+    - layer: ../../alif-tinyusb.clayer.yml
+    - layer: ../../alif-tinyusb-cdc.clayer.yml
+
+  add-path:
+    - ../../../lib/tinyusb/examples/device/hid_multiple_interface/src/
+
+  output:
+    base-name: $Project$
+    type:
+      - elf
+      - bin
