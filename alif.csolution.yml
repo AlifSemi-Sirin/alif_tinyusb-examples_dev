@@ -58,6 +58,7 @@ solution:
     - project: examples/device/hid_multiple_interface/device_hid_multiple_interface.cproject.yml
     - project: examples/device/net_lwip_webserver/device_net_lwip_webserver.cproject.yml
     - project: examples/device/net_lwip_webserver_freertos/device_net_lwip_webserver_freertos.cproject.yml
+    - project: examples/device/video_capture/device_video_capture.cproject.yml
 
     - project: examples/host/device_info/host_device_info.cproject.yml
     - project: examples/host/cdc_msc_hid/host_cdc_msc_hid.cproject.yml

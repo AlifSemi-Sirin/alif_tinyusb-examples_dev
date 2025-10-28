@@ -4,7 +4,7 @@ layer:
 
   define:
     - CFG_TUSB_RHPORT0_MODE: OPT_MODE_HOST
-    
+
   groups:
     - group: Alif USB low level driver for TinyUSB host mode
       files:
@@ -33,3 +33,7 @@ layer:
         - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_allocate.c
         - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_free.c
         - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_free_block_best_get.c
+
+
+  add-path:
+    - ../lib/tinyusb/src/portable/xhci
