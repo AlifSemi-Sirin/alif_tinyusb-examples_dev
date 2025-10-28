@@ -10,6 +10,12 @@ layer:
       files:
         - file: ../lib/tinyusb/src/portable/alif/alif_e7_dk/hcd_ensemble.c
 
+    - group: TinyUSB host mode sources
+      files:
+        - file: ../lib/tinyusb/src/class/cdc/cdc_host.c
+        - file: ../lib/tinyusb/src/class/msc/msc_host.c
+        - file: ../lib/tinyusb/src/class/hid/hid_host.c
+
     - group: TinyUSB host xHCI Driver sources
       files:
         - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_bulk_transfer.c

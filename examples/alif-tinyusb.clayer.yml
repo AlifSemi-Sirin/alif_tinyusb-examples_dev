@@ -10,6 +10,8 @@ layer:
     - SECTION_USB_DMA_BUF: \"usb_dma_buf\"
     - CFG_TUSB_MEM_SECTION: __attribute__\(\(section\(SECTION_USB_DMA_BUF\)\)\)
     - CFG_TUSB_MEM_ALIGN: __attribute__\(\(aligned\(32\)\)\)
+    - CFG_TUH_MEM_SECTION: CFG_TUSB_MEM_SECTION
+
 
   groups:
     - group: Alif BSP
