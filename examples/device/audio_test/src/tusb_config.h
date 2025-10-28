@@ -89,6 +89,8 @@ extern "C" {
 // DEVICE CONFIGURATION
 //--------------------------------------------------------------------
 
+#define CFG_ALIF_ISOC_IN_BUF_EP3  14
+
 #ifndef CFG_TUD_ENDPOINT0_SIZE
 #define CFG_TUD_ENDPOINT0_SIZE    64
 #endif
