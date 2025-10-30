@@ -10,8 +10,6 @@ layer:
     - SECTION_USB_DMA_BUF: \"usb_dma_buf\"
     - CFG_TUSB_MEM_SECTION: __attribute__\(\(section\(SECTION_USB_DMA_BUF\)\)\)
     - CFG_TUSB_MEM_ALIGN: __attribute__\(\(aligned\(32\)\)\)
-    - CFG_TUH_MEM_SECTION: CFG_TUSB_MEM_SECTION
-
 
   groups:
     - group: Alif BSP
@@ -23,8 +21,6 @@ layer:
         - file: ../lib/tinyusb/src/tusb.c
         - file: ../lib/tinyusb/src/common/tusb_fifo.c
         - file: ../lib/tinyusb/hw/bsp/board.c
-        - file: ../lib/tinyusb/src/host/usbh.c
-        - file: ../lib/tinyusb/src/host/hub.c
 
   add-path:
     - ../lib/tinyusb/src
