@@ -60,3 +60,7 @@ solution:
     - project: examples/device/net_lwip_webserver_freertos/device_net_lwip_webserver_freertos.cproject.yml
     - project: examples/device/video_capture/device_video_capture.cproject.yml
 
+    - project: examples/host/device_info/host_device_info.cproject.yml
+    - project: examples/host/cdc_msc_hid/host_cdc_msc_hid.cproject.yml
+    - project: examples/host/msc_file_explorer/host_msc_file_explorer.cproject.yml
+

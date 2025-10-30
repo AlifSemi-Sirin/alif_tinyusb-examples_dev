@@ -3,7 +3,7 @@ default:
   misc:
     - for-compiler: GCC
       C:
-        - -std=c99
+        - -std=c2x
         - -fdata-sections
         - -mcmse
       Link:

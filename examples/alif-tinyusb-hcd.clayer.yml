@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.3.0/tools/projmgr/schemas/clayer.schema.json
+layer:
+  description: TinyUSB with Alif Ensemble compatibility layer
+
+  define:
+    - CFG_TUSB_RHPORT0_MODE: OPT_MODE_HOST
+    - CFG_TUH_MEM_SECTION: CFG_TUSB_MEM_SECTION
+    
+  groups:
+    - group: Alif USB low level driver for TinyUSB host mode
+      files:
+        - file: ../lib/tinyusb/src/portable/alif/alif_e7_dk/hcd_ensemble.c
+
+    - group: TinyUSB host mode sources
+      files:
+        - file: ../lib/tinyusb/src/host/usbh.c
+        - file: ../lib/tinyusb/src/host/hub.c
+        
+        - file: ../lib/tinyusb/src/class/cdc/cdc_host.c
+        - file: ../lib/tinyusb/src/class/msc/msc_host.c
+        - file: ../lib/tinyusb/src/class/hid/hid_host.c
+
+    - group: TinyUSB host xHCI Driver sources
+      files:
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_bulk_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_hub.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_port_enable.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_initialize.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_port_status_get.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_control_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_interrupt_handler.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_td_process.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_entry.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_interrupt_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_transfer_request.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_ep_bandwidth.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_isoc_transfer.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_ep_reset.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_hcd_xhci_mem_init.c
+
+        - file: ../lib/tinyusb/src/portable/xhci/ux_system_initialize.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_allocate.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_free.c
+        - file: ../lib/tinyusb/src/portable/xhci/ux_utility_memory_free_block_best_get.c
+
+
+  add-path:
+    - ../lib/tinyusb/src/portable/xhci
