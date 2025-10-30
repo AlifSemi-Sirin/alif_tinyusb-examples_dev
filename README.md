@@ -12,6 +12,11 @@ Contains following examples:
 * hid_boot_interface
 * hid_multiple_interface
 * msc_dual_lun
+* net_lwip_webserver
+* net_lwip_webserver_freertos
+* net_lwip_webserver_zephyr
+* audio_test
+* video_capture
 
 ## CSolution Project Build (Bare-metal / FreeRTOS)
 
