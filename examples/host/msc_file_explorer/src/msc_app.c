@@ -403,7 +403,7 @@ void cli_cmd_cat(EmbeddedCli *cli, char *args, void *context)
 
   for(uint16_t i=0; i<argc; i++)
   {
-    FIL fi;
+    static FIL fi CFG_TUH_MEM_SECTION;
     const char* fpath = embeddedCliGetToken(args, i+1); // token count from 1
 
     if ( FR_OK != f_open(&fi, fpath, FA_READ) )
@@ -471,8 +471,8 @@ void cli_cmd_cp(EmbeddedCli *cli, char *args, void *context)
   const char* src = embeddedCliGetToken(args, 1);
   const char* dst = embeddedCliGetToken(args, 2);
 
-  FIL f_src;
-  FIL f_dst;
+  static FIL f_src CFG_TUH_MEM_SECTION;
+  static FIL f_dst CFG_TUH_MEM_SECTION;
 
   if ( FR_OK != f_open(&f_src, src, FA_READ) )
   {
