@@ -60,4 +60,5 @@ solution:
     - project: examples/device/net_lwip_webserver_freertos/device_net_lwip_webserver_freertos.cproject.yml
     - project: examples/device/audio_test/device_audio_test.cproject.yml
     - project: examples/device/video_capture/device_video_capture.cproject.yml
+    - project: examples/device/audio_test_freertos/device_audio_test_freertos.cproject.yml
 
