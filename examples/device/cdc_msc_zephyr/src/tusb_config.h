@@ -58,11 +58,6 @@
 #define CFG_TUSB_OS           OPT_OS_ZEPHYR
 #endif
 
-// Espressif IDF requires "freertos/" prefix in include path
-#if TUSB_MCU_VENDOR_ESPRESSIF
-#define CFG_TUSB_OS_INC_PATH  freertos/
-#endif
-
 // can be defined by compiler in DEBUG build
 #ifndef CFG_TUSB_DEBUG
 #define CFG_TUSB_DEBUG        0

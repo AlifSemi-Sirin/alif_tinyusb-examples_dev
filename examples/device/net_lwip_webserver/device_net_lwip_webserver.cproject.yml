@@ -61,7 +61,7 @@ project:
     - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
     - layer: ../../alif-common-app-utils.clayer.yml
     - layer: ../../alif-tinyusb.clayer.yml
-    - layer: ../../alif-tinyusb-cdc.clayer.yml
+    - layer: ../../alif-tinyusb-dcd.clayer.yml
 
   add-path:
     - ../../../lib/tinyusb/examples/device/net_lwip_webserver/src/

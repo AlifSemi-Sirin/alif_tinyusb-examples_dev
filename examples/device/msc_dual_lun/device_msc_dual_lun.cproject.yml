@@ -10,7 +10,7 @@ project:
   layers:
     - layer: ../../../device/ensemble/alif-ensemble.clayer.yml
     - layer: ../../alif-common-app-utils.clayer.yml
-    - layer: ../../alif-tinyusb-cdc.clayer.yml
+    - layer: ../../alif-tinyusb-dcd.clayer.yml
     - layer: ../../alif-tinyusb.clayer.yml
     
   add-path:

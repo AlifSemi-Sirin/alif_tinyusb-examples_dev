@@ -5,9 +5,6 @@ layer:
   define:
     - CFG_TUSB_RHPORT0_MODE: OPT_MODE_DEVICE
 
-  #layers:
-  #  - layer: alif-tinyusb.clayer.yaml
-
   groups:
     - group: Alif USB low level driver for TinyUSB device mode
       files:

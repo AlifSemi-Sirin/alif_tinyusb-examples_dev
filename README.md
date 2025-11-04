@@ -16,7 +16,11 @@ Contains following examples:
 * net_lwip_webserver_freertos
 * net_lwip_webserver_zephyr
 * audio_test
+* audio_test_freertos
+* audio_test_zephyr
 * video_capture
+* video_capture_freertos
+* video_capture_zephyr
 
 ## CSolution Project Build (Bare-metal / FreeRTOS)
 

@@ -54,12 +54,7 @@
 #endif
 
 #ifndef CFG_TUSB_OS
-#define CFG_TUSB_OS           OPT_OS_NONE
-#endif
-
-// Espressif IDF requires "freertos/" prefix in include path
-#ifdef ESP_PLATFORM
-#define CFG_TUSB_OS_INC_PATH  freertos/
+#define CFG_TUSB_OS           OPT_OS_ZEPHYR
 #endif
 
 #ifndef CFG_TUSB_DEBUG
