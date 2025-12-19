@@ -6,4 +6,9 @@
     "cmake.configureOnOpen": false,
 
     "cortex-debug.variableUseNaturalFormat": false,
+    "clangd.arguments": [
+        "--compile-commands-dir=/home/woody/workspace/alif/alif_tinyusb-examples/out/device_cdc_msc/E8-HE/debug"
+    ],
+    "debug.hideSlowPreLaunchWarning": true,
+    "debug.showInStatusBar": "never",
 }

@@ -2,6 +2,172 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "OpenOCD+M55_HE (SWD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${command:cmsis-csolution.getBinaryFile}",
+            "servertype": "openocd",
+            "interface": "swd",
+            "configFiles": [
+                "/usr/local/share/openocd/scripts/interface/cmsis-dap.cfg",
+                "${workspaceFolder}/debugger/device/cmsis_dap/corstone_soc600_swd.cfg"
+            ],
+            "preLaunchCommands": [
+                "rbreak main"
+            ],
+            "postLaunchCommands": [
+                "continue"
+            ],
+            "showDevDebugOutput": "both",
+            "showDevDebugTimestamps": true
+        },
+        {
+            "name": "OpenOCD+M55_HP (SWD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/out/blinky/E8-HP/debug/blinky.elf",
+            "servertype": "openocd",
+            "interface": "swd",
+            "configFiles": [
+                "${env:HOME}/openocd/tcl/interface/cmsis-dap.cfg",
+                "${workspaceFolder}/examples/device/cmsis_dap/openocd_cfg/corstone_soc600_swd.cfg"
+            ],
+            "preLaunchCommands": [
+                "rbreak main"
+            ],
+            "postLaunchCommands": [
+                "continue"
+            ],
+            "showDevDebugOutput": "both",
+            "showDevDebugTimestamps": true
+        },
+        {
+            "name": "PyOCD+M55_HE",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${command:cmsis-csolution.getBinaryFile}",
+            "stopAtEntry": true,
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb-multiarch",
+            "debugServerPath": "${env:HOME}/.local/bin/pyocd-gdbserver",
+            "debugServerArgs": "-t AE722F80F55D5LS --pack ${env:HOME}/Alif/AlifSemiconductor.Ensemble.1.3.0.pack",
+            "serverLaunchTimeout": 20000,
+            "filterStderr": true,
+            "filterStdout": false,
+            "setupCommands": [
+                {
+                    "text": "set confirm off"
+                },
+                {
+                    "text": "set pagination off"
+                },
+                {
+                    "text": "set print pretty on"
+                },
+                {
+                    "text": "set print address on"
+                },
+                {
+                    "text": "set print asm-demangle on"
+                },
+                {
+                    "text": "-interpreter-exec console \"file ${command:cmsis-csolution.getBinaryFile}\""
+                },
+                {
+                    "text": "-interpreter-exec console \"target remote localhost:3334\""
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor reset\""
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor reset halt\""
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor arm semihosting enable\""
+                },
+                {
+                    "text": "-interpreter-exec console \"break main\""
+                },
+                {
+                    "text": "-interpreter-exec console \"continue\""
+                }
+            ],
+            "logging": {
+                "moduleLoad": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "preLaunchTask": "pyOCD Load"
+        },
+        {
+            "name": "PyOCD+M55_HP",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${command:cmsis-csolution.getBinaryFile}",
+            "stopAtEntry": true,
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb-multiarch",
+            "debugServerPath": "${env:HOME}/.local/bin/pyocd-gdbserver",
+            "debugServerArgs": "-t AE722F80F55D5LS --pack ${env:HOME}/Alif/AlifSemiconductor.Ensemble.1.3.0.pack",
+            "serverLaunchTimeout": 20000,
+            "filterStderr": true,
+            "filterStdout": false,
+            "setupCommands": [
+                {
+                    "text": "set confirm off"
+                },
+                {
+                    "text": "set pagination off"
+                },
+                {
+                    "text": "set print pretty on"
+                },
+                {
+                    "text": "set print address on"
+                },
+                {
+                    "text": "set print asm-demangle on"
+                },
+                {
+                    "text": "-interpreter-exec console \"file ${command:cmsis-csolution.getBinaryFile}\""
+                },
+                {
+                    "text": "-interpreter-exec console \"target remote localhost:3333\""
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor reset\""
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor reset halt\""
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor arm semihosting enable\""
+                },
+                {
+                    "text": "-interpreter-exec console \"break main\""
+                },
+                {
+                    "text": "-interpreter-exec console \"continue\""
+                }
+            ],
+            "logging": {
+                "moduleLoad": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "preLaunchTask": "pyOCD Load"
+        },
+        {
             "name": "Alif Ensemble Debug (Cortex-Debug)",
             "cwd": "${workspaceFolder}",
             "executable": "${command:cmsis-csolution.getBinaryFile}",
@@ -12,7 +178,10 @@
             "showDevDebugOutput": "parsed",
             "device": "${command:cmsis-csolution.getDeviceName}_${command:cmsis-csolution.getProcessorName}",
             "interface": "jtag",
-            "serverArgs": ["-JLinkDevicesXmlPath", ".alif/JLinkDevices.xml"],
+            "serverArgs": [
+                "-JLinkDevicesXmlPath",
+                ".alif/JLinkDevices.xml"
+            ],
             "preLaunchCommands": [
                 "monitor speed 15000"
             ],
@@ -31,7 +200,100 @@
                     }
                 ]
             }
+        },
+        {
+            "name": "M55_HE CMSIS_DAP@pyOCD (launch)",
+            "type": "gdbtarget",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/",
+            "program": "${command:cmsis-csolution.getBinaryFile}",
+            "gdb": "arm-none-eabi-gdb",
+            "auxiliaryGdb": true,
+            "preLaunchTask": "CMSIS Load",
+            "initCommands": [
+                "monitor reset halt",
+                "tbreak main"
+            ],
+            "customResetCommands": [
+                "monitor reset halt",
+                "maintenance flush register-cache",
+                "maintenance flush dcache",
+                "tbreak main",
+                "continue"
+            ],
+            "target": {
+                "server": "pyocd",
+                "serverParameters": [
+                    "gdbserver",
+                    "--probe",
+                    "cmsisdap:",
+                    "--connect",
+                    "attach",
+                    "--persist",
+                    "--cbuild-run",
+                    "${command:cmsis-csolution.getCbuildRunFile}",
+                    "--quiet",
+                    "--log",
+                    "*.cbuild_run,*server=info"
+                ],
+                "port": "3333"
+            },
+            "cmsis": {
+                "cbuildRunFile": "${command:cmsis-csolution.getCbuildRunFile}",
+                "updateConfiguration": "auto"
+            }
+        },
+        {
+            "name": "M55_HE CMSIS_DAP@pyOCD (attach)",
+            "type": "gdbtarget",
+            "request": "attach",
+            "cwd": "${workspaceFolder}/",
+            "program": "${command:cmsis-csolution.getBinaryFile}",
+            "gdb": "arm-none-eabi-gdb",
+            "auxiliaryGdb": true,
+            "initCommands": [
+                ""
+            ],
+            "customResetCommands": [
+                "monitor reset halt",
+                "maintenance flush register-cache",
+                "maintenance flush dcache",
+                "tbreak main",
+                "continue"
+            ],
+            "target": {
+                "port": "3333"
+            },
+            "cmsis": {
+                "cbuildRunFile": "${command:cmsis-csolution.getCbuildRunFile}",
+                "updateConfiguration": "auto"
+            }
+        },
+        {
+            "name": "M55_HP CMSIS_DAP@pyOCD (attach)",
+            "type": "gdbtarget",
+            "request": "attach",
+            "cwd": "${workspaceFolder}/",
+            "program": "",
+            "gdb": "arm-none-eabi-gdb",
+            "auxiliaryGdb": true,
+            "initCommands": [
+                ""
+            ],
+            "customResetCommands": [
+                "monitor reset halt",
+                "maintenance flush register-cache",
+                "maintenance flush dcache",
+                "tbreak main",
+                "continue"
+            ],
+            "target": {
+                "port": "3334"
+            },
+            "cmsis": {
+                "cbuildRunFile": "${command:cmsis-csolution.getCbuildRunFile}",
+                "updateConfiguration": "auto"
+            }
         }
     ]
 }
-

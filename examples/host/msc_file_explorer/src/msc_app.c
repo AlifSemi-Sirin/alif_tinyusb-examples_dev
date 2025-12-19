@@ -200,7 +200,7 @@ static bool disk_io_complete(uint8_t dev_addr, tuh_msc_complete_data_t const * c
 }
 
 DSTATUS disk_status (
-	BYTE pdrv		/* Physical drive nmuber to identify the drive */
+    BYTE pdrv       /* Physical drive nmuber to identify the drive */
 )
 {
   uint8_t dev_addr = pdrv + 1;
@@ -208,55 +208,55 @@ DSTATUS disk_status (
 }
 
 DSTATUS disk_initialize (
-	BYTE pdrv				/* Physical drive nmuber to identify the drive */
+    BYTE pdrv               /* Physical drive nmuber to identify the drive */
 )
 {
   (void) pdrv;
-	return 0; // nothing to do
+    return 0; // nothing to do
 }
 
 DRESULT disk_read (
-	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
-	BYTE *buff,		/* Data buffer to store read data */
-	LBA_t sector,	/* Start sector in LBA */
-	UINT count		/* Number of sectors to read */
+    BYTE pdrv,      /* Physical drive nmuber to identify the drive */
+    BYTE *buff,     /* Data buffer to store read data */
+    LBA_t sector,   /* Start sector in LBA */
+    UINT count      /* Number of sectors to read */
 )
 {
-	uint8_t const dev_addr = pdrv + 1;
-	uint8_t const lun = 0;
+    uint8_t const dev_addr = pdrv + 1;
+    uint8_t const lun = 0;
 
-	_disk_busy[pdrv] = true;
-	tuh_msc_read10(dev_addr, lun, buff, sector, (uint16_t) count, disk_io_complete, 0);
-	wait_for_disk_io(pdrv);
+    _disk_busy[pdrv] = true;
+    tuh_msc_read10(dev_addr, lun, buff, sector, (uint16_t) count, disk_io_complete, 0);
+    wait_for_disk_io(pdrv);
 
-	return RES_OK;
+    return RES_OK;
 }
 
 #if FF_FS_READONLY == 0
 
 DRESULT disk_write (
-	BYTE pdrv,			/* Physical drive nmuber to identify the drive */
-	const BYTE *buff,	/* Data to be written */
-	LBA_t sector,		/* Start sector in LBA */
-	UINT count			/* Number of sectors to write */
+    BYTE pdrv,          /* Physical drive nmuber to identify the drive */
+    const BYTE *buff,   /* Data to be written */
+    LBA_t sector,       /* Start sector in LBA */
+    UINT count          /* Number of sectors to write */
 )
 {
-	uint8_t const dev_addr = pdrv + 1;
-	uint8_t const lun = 0;
+    uint8_t const dev_addr = pdrv + 1;
+    uint8_t const lun = 0;
 
-	_disk_busy[pdrv] = true;
-	tuh_msc_write10(dev_addr, lun, buff, sector, (uint16_t) count, disk_io_complete, 0);
-	wait_for_disk_io(pdrv);
+    _disk_busy[pdrv] = true;
+    tuh_msc_write10(dev_addr, lun, buff, sector, (uint16_t) count, disk_io_complete, 0);
+    wait_for_disk_io(pdrv);
 
-	return RES_OK;
+    return RES_OK;
 }
 
 #endif
 
 DRESULT disk_ioctl (
-	BYTE pdrv,		/* Physical drive nmuber (0..) */
-	BYTE cmd,		/* Control code */
-	void *buff		/* Buffer to send/receive control data */
+    BYTE pdrv,      /* Physical drive nmuber (0..) */
+    BYTE cmd,       /* Control code */
+    void *buff      /* Buffer to send/receive control data */
 )
 {
   uint8_t const dev_addr = pdrv + 1;
@@ -283,7 +283,7 @@ DRESULT disk_ioctl (
       return RES_PARERR;
   }
 
-	return RES_OK;
+    return RES_OK;
 }
 
 //--------------------------------------------------------------------+
@@ -411,7 +411,7 @@ void cli_cmd_cat(EmbeddedCli *cli, char *args, void *context)
       printf("%s: No such file or directory\r\n", fpath);
     }else
     {
-      uint8_t buf[512];
+      static uint8_t buf[512] CFG_TUH_MEM_SECTION;
       UINT count = 0;
       while ( (FR_OK == f_read(&fi, buf, sizeof(buf), &count)) && (count > 0) )
       {
@@ -486,7 +486,7 @@ void cli_cmd_cp(EmbeddedCli *cli, char *args, void *context)
     return;
   }else
   {
-    uint8_t buf[512];
+    static uint8_t buf[512] CFG_TUH_MEM_SECTION;
     UINT rd_count = 0;
     while ( (FR_OK == f_read(&f_src, buf, sizeof(buf), &rd_count)) && (rd_count > 0) )
     {
